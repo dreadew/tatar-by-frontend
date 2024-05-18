@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 export default function DashboardPage() {
 	return (
-		<section className='relative px-3 sm:px-8 lg:pl-28 lg:pr-12 xl:px-36 py-56 pb-96 sm:py-28 xl:py-10 h-screen flex flex-col xl:grid xl:grid-cols-3'>
+		<section className='relative h-screen px-3 sm:px-8 lg:pl-28 lg:pr-12 xl:px-36 py-56 pb-96 sm:py-28 xl:py-10 flex flex-col xl:grid xl:grid-cols-3'>
 			<motion.section
 				initial={{
 					opacity: 0,
@@ -23,7 +23,7 @@ export default function DashboardPage() {
 				transition={{
 					duration: 0.75,
 				}}
-				className='col-span-2 pb-12 xl:pb-0'
+				className='col-span-2 pb-24 xl:pb-0'
 			>
 				<DashboardWrapper />
 			</motion.section>

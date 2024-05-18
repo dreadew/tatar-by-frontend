@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest, response: NextResponse) {
-	const { url, cookies } = request
+	/*const { url, cookies } = request
 	const accessToken = cookies.get('access_token')?.value
 
 	const isPrivatePage = url.includes('/dashboard')
@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 		return NextResponse.redirect(new URL('/sign-in', url))
 	}
 
-	return NextResponse.next()
+	return NextResponse.next()*/
 }
 
 export const config = {

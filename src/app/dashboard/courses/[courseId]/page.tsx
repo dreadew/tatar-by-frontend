@@ -1,5 +1,6 @@
 'use client'
 
+import { CreateLessonDialog } from '@/components/create-lesson-dialog'
 import { LessonCard } from '@/components/lesson-card'
 import coursesService from '@/services/courses.service'
 import { useQuery } from '@tanstack/react-query'
@@ -34,12 +35,17 @@ export default function DetailCoursePage() {
 				}}
 				className='flex flex-col gap-2'
 			>
-				<h1 className='text-2xl font-bold text-neutral-dark'>Заголовок</h1>
-				<span className='font-medium text-neutral-light'>
-					Для людей в возрасте от{' '}
-					<span className='font-bold text-neutral-dark'>7</span> до{' '}
-					<span className='font-bold text-neutral-dark'>12</span> лет
-				</span>
+				<div className='flex flex-wrap gap-4 justify-between'>
+					<div className='flex flex-col gap-2'>
+						<h1 className='text-2xl font-bold text-neutral-dark'>Заголовок</h1>
+						<span className='font-medium text-neutral-light'>
+							Для людей в возрасте от{' '}
+							<span className='font-bold text-neutral-dark'>7</span> до{' '}
+							<span className='font-bold text-neutral-dark'>12</span> лет
+						</span>
+					</div>
+					<CreateLessonDialog />
+				</div>
 			</motion.div>
 			<motion.div
 				initial={{
@@ -58,7 +64,7 @@ export default function DetailCoursePage() {
 					duration: 0.75,
 					delay: 0.5,
 				}}
-				className='grid gap-6 grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))]'
+				className='grid gap-6 grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] pb-32'
 			>
 				<LessonCard id='test' courseId={params.courseId as string} />
 				<LessonCard id='test' courseId={params.courseId as string} />

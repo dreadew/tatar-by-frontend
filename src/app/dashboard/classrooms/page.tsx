@@ -51,7 +51,7 @@ export default function ClassroomPage() {
 						</div>
 					))}
 			</div>
-			<ul className='gap-6 grid grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))]'>
+			<ul className='gap-6 grid grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] pb-20'>
 				{data?.data?.map((item, idx) => (
 					<ClassroomCard
 						key={`classroom-${idx}`}

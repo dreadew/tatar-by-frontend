@@ -3,6 +3,7 @@
 import { courses } from '@/data'
 import coursesService from '@/services/courses.service'
 import { useUserStore } from '@/stores/userStore'
+import { cn } from '@/utils/cn'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useCallback, useMemo, useRef, useState } from 'react'
@@ -25,6 +26,7 @@ interface IScrollableSection {
 	text: string | React.ReactNode
 	emptyString: string | React.ReactNode
 	withCreate?: boolean
+	className?: string
 	options:
 		| Array<{
 				id: string
@@ -40,6 +42,7 @@ export const ScrollableSection = ({
 	options,
 	emptyString,
 	withCreate = false,
+	className,
 }: IScrollableSection) => {
 	const sliderRef = useRef<HTMLUListElement | null>(null)
 	const [sliderPos, setSliderPos] = useState<number>(0)
@@ -78,7 +81,10 @@ export const ScrollableSection = ({
 					onScroll={ev => {
 						setSliderPos(ev.currentTarget.scrollLeft)
 					}}
-					className='min-h-[325px] flex gap-5 pb-10 overflow-x-auto snap-x snap-mandatory'
+					className={cn(
+						'min-h-[325px] flex gap-5 pb-10 overflow-x-auto snap-x snap-mandatory',
+						className
+					)}
 				>
 					{options?.map((item, idx) => (
 						<li key={`courses-${idx}`} className='snap-start'>

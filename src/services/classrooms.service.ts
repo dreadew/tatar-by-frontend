@@ -42,7 +42,7 @@ class ClassroomsService {
 	}
 
 	async getByUser(id: string) {
-		if (id === '') return
+		if (id === '' || id === 'undefined') return
 		return await axiosWithAuth.get<Array<Classroom>>(
 			this.URL + `/student/${id}/get-classrooms`
 		)

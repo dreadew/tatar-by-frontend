@@ -99,3 +99,12 @@ export const LevelSchema = z.object({
 })
 
 export type LevelValidationSchema = z.infer<typeof LevelSchema>
+
+export const LessonSchema = z.object({
+	course: z.object({
+		id: z.string().uuid(),
+	}),
+	description: z.string(),
+})
+
+export type LessonValidationSchema = z.infer<typeof LessonSchema>

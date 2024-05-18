@@ -28,8 +28,10 @@ export default function CoursesPage() {
 			}}
 			className='relative px-3 sm:px-8 lg:pl-28 lg:pr-12 xl:px-36 py-8 xl:py-10 h-screen flex flex-col gap-8'
 		>
-			<DashboardCourses />
-			{user?.role === 'ROLE_TEACHER' && <TeacherCourses />}
+			<div className='pb-20'>
+				<DashboardCourses />
+				{user?.role === 'ROLE_TEACHER' && <TeacherCourses />}
+			</div>
 		</motion.main>
 	)
 }
