@@ -10,7 +10,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
-export const AddToClassroomForm = () => {
+export const AddToClassroomForm = ({ id }: { id: string }) => {
 	const {
 		register,
 		handleSubmit,
@@ -20,7 +20,7 @@ export const AddToClassroomForm = () => {
 		resolver: zodResolver(AddToClassroomSchema),
 		defaultValues: {
 			login: '',
-			id: '',
+			id: id,
 		},
 	})
 
@@ -36,6 +36,7 @@ export const AddToClassroomForm = () => {
 	const onSubmit: SubmitHandler<
 		AddToClassroomValidationSchema
 	> = async data => {
+		console.log(data)
 		mutate(data)
 		reset()
 	}
@@ -49,11 +50,6 @@ export const AddToClassroomForm = () => {
 				placeholder='Логин пользователя'
 				error={errors.login?.message}
 				{...register('login')}
-			/>
-			<Input
-				placeholder='ID группы'
-				error={errors.id?.message}
-				{...register('id')}
 			/>
 			<Button className='mt-2' type='submit'>
 				Добавить пользователя

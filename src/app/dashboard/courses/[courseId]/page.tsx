@@ -3,18 +3,27 @@
 import { CreateLessonDialog } from '@/components/create-lesson-dialog'
 import { LessonCard } from '@/components/lesson-card'
 import coursesService from '@/services/courses.service'
+import { useUserStore } from '@/stores/userStore'
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'framer-motion'
 import { useParams } from 'next/navigation'
 
 export default function DetailCoursePage() {
 	const params = useParams()
+	const { user } = useUserStore()
 
 	const { data } = useQuery({
 		queryKey: ['get course by id', params.courseId],
 		queryFn: () =>
 			coursesService.getByStudentId((params.courseId as string) || ''),
 	})
+
+	const canEdit = data
+		? data.data.filter(i => i.teacher_id === user?.id).length > 0
+			? true
+			: false
+		: false
+
 	return (
 		<main className='relative px-3 sm:px-8 lg:pl-28 lg:pr-12 xl:px-36 py-8 xl:py-10 h-screen flex flex-col gap-8'>
 			<motion.div
@@ -44,7 +53,7 @@ export default function DetailCoursePage() {
 							<span className='font-bold text-neutral-dark'>12</span> лет
 						</span>
 					</div>
-					<CreateLessonDialog />
+					{canEdit && <CreateLessonDialog id={params.courseId as string} />}
 				</div>
 			</motion.div>
 			<motion.div
@@ -66,14 +75,11 @@ export default function DetailCoursePage() {
 				}}
 				className='grid gap-6 grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] pb-32'
 			>
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
-				<LessonCard id='test' courseId={params.courseId as string} />
+				<LessonCard
+					canCreate={canEdit}
+					id='test'
+					courseId={params.courseId as string}
+				/>
 			</motion.div>
 		</main>
 	)

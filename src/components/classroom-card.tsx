@@ -1,6 +1,8 @@
 import classroomsService from '@/services/classrooms.service'
 import { Classroom } from '@/types/classrooms'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AddStudentDialog } from './add-student-dialog'
+import { DeleteStudentDialog } from './add-student-dialog copy'
 import { DeleteClassroomButton } from './delete-classroom'
 import { Button } from './ui/button'
 
@@ -50,6 +52,8 @@ export const ClassroomCard = ({
 					</Button>
 				)}
 				{canDelete && <DeleteClassroomButton id={id} />}
+				{canDelete && <AddStudentDialog id={id} />}
+				{canDelete && <DeleteStudentDialog id={id} />}
 			</div>
 		</div>
 	)

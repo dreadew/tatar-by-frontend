@@ -2,7 +2,7 @@ import { JWTToken } from '@/types/jwt'
 import { decodeJwt, jwtVerify } from 'jose'
 import Cookies from 'js-cookie'
 
-export const getAccessToken = async () => {
+export const getAccessToken = () => {
 	const accessToken = Cookies.get('access_token')
 	return accessToken || null
 }

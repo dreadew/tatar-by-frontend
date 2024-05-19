@@ -1,7 +1,5 @@
 'use client'
 
-import { AddStudentDialog } from '@/components/add-student-dialog'
-import { DeleteStudentDialog } from '@/components/add-student-dialog copy'
 import { ClassroomCard } from '@/components/classroom-card'
 import { CreateClassroomDialog } from '@/components/create-classroom-dialog'
 import { EmptyCard } from '@/components/empty-card'
@@ -16,7 +14,7 @@ export default function ClassroomPage() {
 	const { data } = useQuery({
 		queryKey: ['classrooms', 1],
 		queryFn:
-			user?.role === 'ROLE_PUPIL'
+			user && user.role === 'ROLE_PUPIL'
 				? () => classroomsService.getByUser(user.id)
 				: () => classroomsService.getAll(),
 	})
@@ -42,14 +40,16 @@ export default function ClassroomPage() {
 		>
 			<div className='flex justify-between'>
 				<h1 className='text-neutral-dark text-2xl font-bold'>Список классов</h1>
-				{user?.role === 'ROLE_TEACHER' ||
-					(user?.role === 'ROLE_EDITOR' && (
-						<div className='flex gap-3'>
-							<DeleteStudentDialog />
-							<AddStudentDialog />
-							<CreateClassroomDialog />
-						</div>
-					))}
+				{user?.role === 'ROLE_TEACHER' && (
+					<div className='flex gap-3'>
+						<CreateClassroomDialog />
+					</div>
+				)}
+				{user?.role === 'ROLE_EDITOR' && (
+					<div className='flex gap-3'>
+						<CreateClassroomDialog />
+					</div>
+				)}
 			</div>
 			<ul className='gap-6 grid grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] pb-20'>
 				{data?.data?.map((item, idx) => (
@@ -66,6 +66,7 @@ export default function ClassroomPage() {
 									: false
 								: false
 						}
+						canDelete={item.teacher.id === user?.id}
 					/>
 				))}
 				{!data && (

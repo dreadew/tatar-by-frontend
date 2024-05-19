@@ -9,7 +9,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
-export const DeleteStudentForm = () => {
+export const DeleteStudentForm = ({ id }: { id: string }) => {
 	const {
 		register,
 		handleSubmit,
@@ -19,7 +19,7 @@ export const DeleteStudentForm = () => {
 		resolver: zodResolver(AddToClassroomSchema),
 		defaultValues: {
 			login: '',
-			id: '',
+			id: id,
 		},
 	})
 
@@ -50,13 +50,8 @@ export const DeleteStudentForm = () => {
 				error={errors.login?.message}
 				{...register('login')}
 			/>
-			<Input
-				placeholder='ID группы'
-				error={errors.id?.message}
-				{...register('id')}
-			/>
 			<Button className='mt-2' type='submit'>
-				Добавить пользователя
+				Удалить пользователя
 			</Button>
 		</form>
 	)

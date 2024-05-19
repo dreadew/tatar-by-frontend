@@ -7,8 +7,9 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
-export const CreateLessonForm = () => {
+export const CreateLessonForm = ({ id }: { id: string }) => {
 	const {
+		setValue,
 		register,
 		handleSubmit,
 		formState: { errors },
@@ -17,7 +18,7 @@ export const CreateLessonForm = () => {
 		resolver: zodResolver(LessonSchema),
 		defaultValues: {
 			course: {
-				id: '',
+				id: id,
 			},
 			description: '',
 		},
@@ -43,11 +44,6 @@ export const CreateLessonForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='w-full flex flex-col gap-y-2'
 		>
-			<Input
-				placeholder='Идентификатор урока'
-				error={errors.course?.id?.message}
-				{...register('course.id')}
-			/>
 			<Input
 				placeholder='Описание'
 				error={errors.description?.message}

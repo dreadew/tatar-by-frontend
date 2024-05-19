@@ -71,7 +71,7 @@ export const ScrollableSection = ({
 
 	return (
 		<div className='flex flex-col gap-4'>
-			<div className='h-[300px] flex flex-col gap-4 overflow-hidden'>
+			<div className='h-[325px] flex flex-col gap-4 overflow-hidden'>
 				<div className='flex items-center gap-8'>
 					<h1 className='text-xl font-bold text-neutral-dark'>{text}</h1>
 					{withCreate && <AddCourseDialog />}

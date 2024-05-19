@@ -87,7 +87,7 @@ export const CreateCourseSchema = z.object({
 export type CreateCourseValidationSchema = z.infer<typeof CreateCourseSchema>
 
 export const LevelSchema = z.object({
-	lesson_id: z.string().uuid('Вы должны ввести uuid идентификатор'),
+	lesson_id: z.string(),
 	level_type: z.string().min(0).max(1),
 	task: z.string().min(3, {
 		message: 'Длина заголовка задания должна быть больше 3 символов ',
@@ -102,7 +102,7 @@ export type LevelValidationSchema = z.infer<typeof LevelSchema>
 
 export const LessonSchema = z.object({
 	course: z.object({
-		id: z.string().uuid(),
+		id: z.string(),
 	}),
 	description: z.string(),
 })

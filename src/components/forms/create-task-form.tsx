@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 
-export const CreateLevelForm = () => {
+export const CreateLevelForm = ({ id }: { id: string }) => {
 	const { user } = useUserStore()
 	const {
 		register,
@@ -16,7 +16,7 @@ export const CreateLevelForm = () => {
 	} = useForm<LevelValidationSchema>({
 		resolver: zodResolver(LevelSchema),
 		defaultValues: {
-			lesson_id: '',
+			lesson_id: id,
 			level_type: '',
 			task: '',
 			correct_answer: '',
@@ -37,6 +37,7 @@ export const CreateLevelForm = () => {
 	})*/
 
 	const onSubmit: SubmitHandler<LevelValidationSchema> = async data => {
+		console.log(data)
 		reset()
 	}
 
